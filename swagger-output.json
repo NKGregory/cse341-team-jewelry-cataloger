@@ -28,5 +28,777 @@
   "schemes": [
     "https"
   ],
-  "paths": {}
+  "paths": {
+    "/api-docs": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
+    "/user/": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "description": "Get all Users in the database",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "description": "Create a new User",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "first_name": {
+                  "example": "any"
+                },
+                "last_name": {
+                  "example": "any"
+                },
+                "email_address": {
+                  "example": "any"
+                },
+                "phone_number": {
+                  "example": "any"
+                },
+                "street_address": {
+                  "example": "any"
+                },
+                "city": {
+                  "example": "any"
+                },
+                "state": {
+                  "example": "any"
+                },
+                "zipcode": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "description": "Get a single user based on the ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "user"
+        ],
+        "description": "Update a User",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "first_name": {
+                  "example": "any"
+                },
+                "last_name": {
+                  "example": "any"
+                },
+                "email_address": {
+                  "example": "any"
+                },
+                "phone_number": {
+                  "example": "any"
+                },
+                "street_address": {
+                  "example": "any"
+                },
+                "city": {
+                  "example": "any"
+                },
+                "state": {
+                  "example": "any"
+                },
+                "zipcode": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "user"
+        ],
+        "description": "Delete a User",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/insurance/": {
+      "get": {
+        "tags": [
+          "insurance"
+        ],
+        "description": "Get all insurance instances in the database",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "insurance"
+        ],
+        "description": "Create a new insurance instance",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "insurance_company": {
+                  "example": "any"
+                },
+                "insurance_agent": {
+                  "example": "any"
+                },
+                "insurance_policy": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/insurance/{id}": {
+      "get": {
+        "tags": [
+          "insurance"
+        ],
+        "description": "Get a single insurance instance based on the ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "insurance"
+        ],
+        "description": "Update an insurance instance",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "insurance_company": {
+                  "example": "any"
+                },
+                "insurance_agent": {
+                  "example": "any"
+                },
+                "insurance_policy": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "insurance"
+        ],
+        "description": "Delete an insurance instance",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/jewelry/": {
+      "get": {
+        "tags": [
+          "jewelry"
+        ],
+        "description": "Get all jewelry items in the database",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "jewelry"
+        ],
+        "description": "Create a new jewerly item",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "finger_size": {
+                  "example": "any"
+                },
+                "metal_weight_grams": {
+                  "example": "any"
+                },
+                "number_of_stones_1": {
+                  "example": "any"
+                },
+                "number_of_stones_2": {
+                  "example": "any"
+                },
+                "number_of_stones_3": {
+                  "example": "any"
+                },
+                "cttw_stones_1": {
+                  "example": "any"
+                },
+                "cttw_stones_2": {
+                  "example": "any"
+                },
+                "cttw_stones_3": {
+                  "example": "any"
+                },
+                "price_stones_1": {
+                  "example": "any"
+                },
+                "price_stones_2": {
+                  "example": "any"
+                },
+                "price_stones_3": {
+                  "example": "any"
+                },
+                "labor_1": {
+                  "example": "any"
+                },
+                "labor_2": {
+                  "example": "any"
+                },
+                "labor_3": {
+                  "example": "any"
+                },
+                "item_condition": {
+                  "example": "any"
+                },
+                "appraisal_note": {
+                  "example": "any"
+                },
+                "item_description": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/jewelry/{id}": {
+      "get": {
+        "tags": [
+          "jewelry"
+        ],
+        "description": "Get a single jewelry item based on the ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "jewelry"
+        ],
+        "description": "Update a jewelry item",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "finger_size": {
+                  "example": "any"
+                },
+                "metal_weight_grams": {
+                  "example": "any"
+                },
+                "number_of_stones_1": {
+                  "example": "any"
+                },
+                "number_of_stones_2": {
+                  "example": "any"
+                },
+                "number_of_stones_3": {
+                  "example": "any"
+                },
+                "cttw_stones_1": {
+                  "example": "any"
+                },
+                "cttw_stones_2": {
+                  "example": "any"
+                },
+                "cttw_stones_3": {
+                  "example": "any"
+                },
+                "price_stones_1": {
+                  "example": "any"
+                },
+                "price_stones_2": {
+                  "example": "any"
+                },
+                "price_stones_3": {
+                  "example": "any"
+                },
+                "labor_1": {
+                  "example": "any"
+                },
+                "labor_2": {
+                  "example": "any"
+                },
+                "labor_3": {
+                  "example": "any"
+                },
+                "item_condition": {
+                  "example": "any"
+                },
+                "appraisal_note": {
+                  "example": "any"
+                },
+                "item_description": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "jewelry"
+        ],
+        "description": "Delete a Jewelry Item",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/market/": {
+      "get": {
+        "tags": [
+          "market"
+        ],
+        "description": "Get all market instanaces in the database",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "market"
+        ],
+        "description": "Create a new market instance",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "entry_date": {
+                  "example": "any"
+                },
+                "metal_name": {
+                  "example": "any"
+                },
+                "metal_karatage": {
+                  "example": "any"
+                },
+                "metal_price": {
+                  "example": "any"
+                },
+                "diamond_price_per_carat": {
+                  "example": "any"
+                },
+                "gemstone_price_per_carat": {
+                  "example": "any"
+                },
+                "labor_total": {
+                  "example": "any"
+                },
+                "retail_modifier": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/market/{id}": {
+      "get": {
+        "tags": [
+          "market"
+        ],
+        "description": "Get a single market instance based on the ID",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "market"
+        ],
+        "description": "Update a market instance",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "entry_date": {
+                  "example": "any"
+                },
+                "metal_name": {
+                  "example": "any"
+                },
+                "metal_karatage": {
+                  "example": "any"
+                },
+                "metal_price": {
+                  "example": "any"
+                },
+                "diamond_price_per_carat": {
+                  "example": "any"
+                },
+                "gemstone_price_per_carat": {
+                  "example": "any"
+                },
+                "labor_total": {
+                  "example": "any"
+                },
+                "retail_modifier": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "market"
+        ],
+        "description": "Delete a Market Instance",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  }
 }
