@@ -21,6 +21,7 @@ const getAll = async (req, res, next) => {
       });
   } catch (err) {
     res.status(500).json(err);
+    res.status(401);
   }
 };
 
@@ -48,6 +49,7 @@ const getSingle = async (req, res, next) => {
       });
   } catch (err) {
     res.status(500).json(err);
+    res.status(401);
   }
 };
 
@@ -80,6 +82,7 @@ const postNewUser = async (req, res) => {
     }
   } catch (err) {
     res.status(500).json(err);
+    res.status(401);
   }
 };
 
@@ -123,6 +126,7 @@ const putUpdateUser = async (req, res) => {
     }
   } catch (err) {
     res.status(500).json(err);
+    res.status(401);
   }
 };
 
@@ -149,6 +153,7 @@ const deleteUser = async (req, res) => {
     }
   } catch (err) {
     res.status(500).json(err);
+    res.status(401);
   }
 };
 

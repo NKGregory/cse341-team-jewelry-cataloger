@@ -21,6 +21,7 @@ const getAll = async (req, res, next) => {
       });
   } catch (err) {
     res.status(500).json(err);
+    res.status(401);
   }
 };
 
@@ -48,6 +49,7 @@ const getSingle = async (req, res, next) => {
       });
   } catch (err) {
     res.status(500).json(err);
+    res.status(401);
   }
 };
 
@@ -75,6 +77,7 @@ const postNewInsurance = async (req, res) => {
     }
   } catch (err) {
     res.status(500).json(err);
+    res.status(401);
   }
 };
 
@@ -113,6 +116,7 @@ const putUpdateInsurance = async (req, res) => {
     }
   } catch (err) {
     res.status(500).json(err);
+    res.status(401);
   }
 };
 
@@ -139,6 +143,7 @@ const deleteInsurance = async (req, res) => {
     }
   } catch (err) {
     res.status(500).json(err);
+    res.status(401);
   }
 };
 
