@@ -1,5 +1,7 @@
-const mongodb = require('../db/connect');
+// const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
+
+const JewelryData = require('../models/Jewelry_Item_Information');
 
 const getAll = async (req, res, next) => {
   /*
@@ -7,19 +9,20 @@ const getAll = async (req, res, next) => {
     #swagger.tags = ['jewelry']
   */
   try {
-    const result = await mongodb
-      .getDb()
-      .db(process.env.PARENT_FOLDER)
-      .collection(process.env.JEWELRY)
-      .find()
-      .toArray((err, lists) => {
-        if (err) {
-          res.status(400).json({ message: err });
-        }
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(lists);
-      });
+    const result = await JewelryData
+      // .getDb()
+      // .db(process.env.PARENT_FOLDER)
+      // .collection(process.env.JEWELRY)
+      .find();
+      // .toArray((err, lists) => {
+      //   if (err) {
+      //     res.status(400).json({ message: err });
+      //   }
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(result);
+      // });
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
     res.status(401);
   }
@@ -35,19 +38,20 @@ const getSingle = async (req, res, next) => {
       res.status(400).json('User ID is not a valid Mongo ID');
     }
     const userId = new ObjectId(req.params.id);
-    const result = await mongodb
-      .getDb()
-      .db(process.env.PARENT_FOLDER)
-      .collection(process.env.JEWELRY)
+    const result = await JewelryData
+      // .getDb()
+      // .db(process.env.PARENT_FOLDER)
+      // .collection(process.env.JEWELRY)
       .find({ _id: userId })
-      .toArray((err, lists) => {
-        if (err) {
-          res.status(400).json({ message: err });
-        }
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(lists);
-      });
+      // .toArray((err, lists) => {
+      //   if (err) {
+      //     res.status(400).json({ message: err });
+      //   }
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(result);
+      // });
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
     res.status(401);
   }
@@ -59,7 +63,7 @@ const postNewJewelry = async (req, res) => {
     #swagger.tags = ['jewelry']
   */
   try {
-    const newJewelry = {
+    const jewelry = new JewelryData({
         finger_size: req.body.finger_size,
         metal_weight_grams: req.body.metal_weight_grams,
         number_of_stones_1: req.body.number_of_stones_1,
@@ -77,19 +81,22 @@ const postNewJewelry = async (req, res) => {
         item_condition: req.body.item_condition,
         appraisal_note: req.body.appraisal_note,
         item_description: req.body.item_description,
-    };
-    const response = await mongodb
-      .getDb()
-      .db(process.env.PARENT_FOLDER)
-      .collection(process.env.JEWELRY)
-      .insertOne(newJewelry);
+    });
 
-    if (response.acknowledged) {
-      res.status(201).json(response);
-    } else {
-      res.status(500).json(response.error || 'An error has occured');
-    }
+    const response = await jewelry.save();
+      // .getDb()
+      // .db(process.env.PARENT_FOLDER)
+      // .collection(process.env.JEWELRY)
+      // .insertOne(newJewelry);
+
+    res.status(201).json(response);
+    // if (response.acknowledged) {
+    //   res.status(201).json(response);
+    // } else {
+    //   res.status(500).json(response.error || 'An error has occured');
+    // }
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
     res.status(401);
   }
@@ -126,10 +133,10 @@ const putUpdateJewelry = async (req, res) => {
         item_description: req.body.item_description, 
     };
 
-    const response = await mongodb
-      .getDb()
-      .db(process.env.PARENT_FOLDER)
-      .collection(process.env.JEWELRY)
+    const response = await JewelryData
+      // .getDb()
+      // .db(process.env.PARENT_FOLDER)
+      // .collection(process.env.JEWELRY)
       .replaceOne({ _id: userId }, updateJewelry);
 
     console.log(response);
@@ -143,6 +150,7 @@ const putUpdateJewelry = async (req, res) => {
         );
     }
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
     res.status(401);
   }
@@ -158,10 +166,10 @@ const deleteJewelry = async (req, res) => {
       res.status(400).json('User ID is not a valid Mongo ID');
     }
     const userId = new ObjectId(req.params.id);
-    const response = await mongodb
-      .getDb()
-      .db(process.env.PARENT_FOLDER)
-      .collection(process.env.JEWELRY)
+    const response = await JewelryData
+      // .getDb()
+      // .db(process.env.PARENT_FOLDER)
+      // .collection(process.env.JEWELRY)
       .deleteOne({ _id: userId });
 
     if (response.acknowledged) {
@@ -170,6 +178,7 @@ const deleteJewelry = async (req, res) => {
       res.status(500).json(response.error || 'An error has occured');
     }
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
     res.status(401);
   }

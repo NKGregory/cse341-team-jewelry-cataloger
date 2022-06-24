@@ -1,5 +1,7 @@
-const mongodb = require('../db/connect');
+// const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
+
+const InsuranceData = require('../models/User_Insurance_Info');
 
 const getAll = async (req, res, next) => {
   /*
@@ -7,19 +9,20 @@ const getAll = async (req, res, next) => {
     #swagger.tags = ['insurance']
   */
   try {
-    const result = await mongodb
-      .getDb()
-      .db(process.env.PARENT_FOLDER)
-      .collection(process.env.INSURANCE)
+    const result = await InsuranceData
+      // .getDb()
+      // .db(process.env.PARENT_FOLDER)
+      // .collection(process.env.INSURANCE)
       .find()
-      .toArray((err, lists) => {
-        if (err) {
-          res.status(400).json({ message: err });
-        }
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(lists);
-      });
+      // .toArray((err, lists) => {
+      //   if (err) {
+      //     res.status(400).json({ message: err });
+      //   }
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(result);
+      // });
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
     res.status(401);
   }
@@ -35,19 +38,20 @@ const getSingle = async (req, res, next) => {
       res.status(400).json('User ID is not a valid Mongo ID');
     }
     const userId = new ObjectId(req.params.id);
-    const result = await mongodb
-      .getDb()
-      .db(process.env.PARENT_FOLDER)
-      .collection(process.env.INSURANCE)
+    const result = await InsuranceData
+      // .getDb()
+      // .db(process.env.PARENT_FOLDER)
+      // .collection(process.env.INSURANCE)
       .find({ _id: userId })
-      .toArray((err, lists) => {
-        if (err) {
-          res.status(400).json({ message: err });
-        }
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(lists);
-      });
+      // .toArray((err, lists) => {
+      //   if (err) {
+      //     res.status(400).json({ message: err });
+      //   }
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(result);
+      // });
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
     res.status(401);
   }
@@ -59,23 +63,26 @@ const postNewInsurance = async (req, res) => {
     #swagger.tags = ['insurance']
   */
   try {
-    const newInsurance = {                
+    const insurance = new InsuranceData ({                
         insurance_company: req.body.insurance_company,
         insurance_agent: req.body.insurance_agent,
         insurance_policy: req.body.insurance_policy,
-    };
-    const response = await mongodb
-      .getDb()
-      .db(process.env.PARENT_FOLDER)
-      .collection(process.env.INSURANCE)
-      .insertOne(newInsurance);
+    });
 
-    if (response.acknowledged) {
-      res.status(201).json(response);
-    } else {
-      res.status(500).json(response.error || 'An error has occured');
-    }
+    const response = await insurance.save();
+      // .getDb()
+      // .db(process.env.PARENT_FOLDER)
+      // .collection(process.env.INSURANCE)
+      // .insertOne(newInsurance);
+
+    res.status(201).json(response);
+    // if (response.acknowledged) {
+    //   res.status(201).json(response);
+    // } else {
+    //   res.status(500).json(response.error || 'An error has occured');
+    // }
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
     res.status(401);
   }
@@ -98,10 +105,10 @@ const putUpdateInsurance = async (req, res) => {
         insurance_policy: req.body.insurance_policy,
     };
 
-    const response = await mongodb
-      .getDb()
-      .db(process.env.PARENT_FOLDER)
-      .collection(process.env.INSURANCE)
+    const response = await InsuranceData
+      // .getDb()
+      // .db(process.env.PARENT_FOLDER)
+      // .collection(process.env.INSURANCE)
       .replaceOne({ _id: userId }, updateInsurance);
 
     console.log(response);
@@ -115,6 +122,7 @@ const putUpdateInsurance = async (req, res) => {
         );
     }
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
     res.status(401);
   }
@@ -130,10 +138,10 @@ const deleteInsurance = async (req, res) => {
       res.status(400).json('User ID is not a valid Mongo ID');
     }
     const userId = new ObjectId(req.params.id);
-    const response = await mongodb
-      .getDb()
-      .db(process.env.PARENT_FOLDER)
-      .collection(process.env.INSURANCE)
+    const response = await InsuranceData
+      // .getDb()
+      // .db(process.env.PARENT_FOLDER)
+      // .collection(process.env.INSURANCE)
       .deleteOne({ _id: userId });
 
     if (response.acknowledged) {
@@ -142,6 +150,7 @@ const deleteInsurance = async (req, res) => {
       res.status(500).json(response.error || 'An error has occured');
     }
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
     res.status(401);
   }

@@ -1,5 +1,7 @@
-const mongodb = require('../db/connect');
+// const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
+
+const UserData = require('../models/User_Data');
 
 const getAll = async (req, res, next) => {
   /*
@@ -7,19 +9,16 @@ const getAll = async (req, res, next) => {
     #swagger.tags = ['user']
   */
   try {
-    const result = await mongodb
-      .getDb()
-      .db(process.env.PARENT_FOLDER)
-      .collection(process.env.USER)
-      .find()
-      .toArray((err, lists) => {
-        if (err) {
-          res.status(400).json({ message: err });
-        }
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(lists);
-      });
+    const result = await UserData.find();
+      // .toArray((err, lists) => {
+      //   if (err) {
+      //     res.status(400).json({ message: err });
+      //   }
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(result);
+      // });
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
     res.status(401);
   }
@@ -35,19 +34,20 @@ const getSingle = async (req, res, next) => {
       res.status(400).json('User ID is not a valid Mongo ID');
     }
     const userId = new ObjectId(req.params.id);
-    const result = await mongodb
-      .getDb()
-      .db(process.env.PARENT_FOLDER)
-      .collection(process.env.USER)
+    const result = await UserData
+      // .getDb()
+      // .db(process.env.PARENT_FOLDER)
+      // .collection(process.env.USER)
       .find({ _id: userId })
-      .toArray((err, lists) => {
-        if (err) {
-          res.status(400).json({ message: err });
-        }
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(lists);
-      });
+      // .toArray((err, lists) => {
+      //   if (err) {
+      //     res.status(400).json({ message: err });
+      //   }
+      res.setHeader('Content-Type', 'application/json');
+      res.status(200).json(result);
+      // });
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
     res.status(401);
   }
@@ -59,7 +59,7 @@ const postNewUser = async (req, res) => {
     #swagger.tags = ['user']
   */
   try {
-    const newUser = {
+    const user = new UserData({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         email_address: req.body.email_address,
@@ -68,19 +68,22 @@ const postNewUser = async (req, res) => {
         city: req.body.city,
         state: req.body.state,
         zipcode: req.body.zipcode,   
-    };
-    const response = await mongodb
-      .getDb()
-      .db(process.env.PARENT_FOLDER)
-      .collection(process.env.USER)
-      .insertOne(newUser);
+    });
 
-    if (response.acknowledged) {
-      res.status(201).json(response);
-    } else {
-      res.status(500).json(response.error || 'An error has occured');
-    }
+    const response = await user.save();
+      // .getDb()
+      // .db(process.env.PARENT_FOLDER)
+      // .collection(process.env.USER)
+      // .insertOne(newUser);
+
+    res.status(201).json(response);
+    // if (response.acknowledged) {
+    //   res.status(201).json(response);
+    // } else {
+    //   res.status(500).json(response.error || 'An error has occured');
+    // }
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
     res.status(401);
   }
@@ -108,10 +111,10 @@ const putUpdateUser = async (req, res) => {
         zipcode: req.body.zipcode,
     };
 
-    const response = await mongodb
-      .getDb()
-      .db(process.env.PARENT_FOLDER)
-      .collection(process.env.USER)
+    const response = await UserData
+      // .getDb()
+      // .db(process.env.PARENT_FOLDER)
+      // .collection(process.env.USER)
       .replaceOne({ _id: userId }, updatedUser);
 
     console.log(response);
@@ -125,6 +128,7 @@ const putUpdateUser = async (req, res) => {
         );
     }
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
     res.status(401);
   }
@@ -140,10 +144,10 @@ const deleteUser = async (req, res) => {
       res.status(400).json('User ID is not a valid Mongo ID');
     }
     const userId = new ObjectId(req.params.id);
-    const response = await mongodb
-      .getDb()
-      .db(process.env.PARENT_FOLDER)
-      .collection(process.env.USER)
+    const response = await UserData
+      // .getDb()
+      // .db(process.env.PARENT_FOLDER)
+      // .collection(process.env.USER)
       .deleteOne({ _id: userId });
 
     if (response.acknowledged) {
@@ -152,6 +156,7 @@ const deleteUser = async (req, res) => {
       res.status(500).json(response.error || 'An error has occured');
     }
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
     res.status(401);
   }
