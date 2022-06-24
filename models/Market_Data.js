@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const Market_Data_Schema = new mongoose.Schema({
     entry_date: {
-        type: String,
-        required: false
+        type: Date,
+        default: Date.now
     },
     metal_name: {
         type: String,
