@@ -9,11 +9,18 @@ const swaggerDocument = require('./swagger-output.json');
 
 const bodyParser = require('body-parser');
 
+const dotenv = require('dotenv').config();
+const connectDB = require('./db/connect');
+
+// Connect the database
+connectDB();
+
 const port = process.env.PORT || 8080;
+
 const app = express();
 
 
-const uri = process.env.MONGO_DB_URI;
+// const uri = process.env.MONGO_DB_URI;
 
 app
   .use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
@@ -35,14 +42,19 @@ app
 
 process.on('uncaughtException', (err, origin) => {
   console.log(process.stderr.fd, `Exception: ${err}\n` + `Origin: ${origin}`);
-});  
-
-mongodb.initDb((err, mongodb) => {
-  if (err) {
-    console.log(err);
-  } else {
-    app.listen(port);
-    console.log(`Connected to DB and listening on ${port}`);
-  }
 });
+
+app.listen(
+  port,
+  console.log(`Server running on port ${process.env.PORT}`)
+);
+
+// mongodb.initDb((err, mongodb) => {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     app.listen(port);
+//     console.log(`Connected to DB and listening on ${port}`);
+//   }
+// });
 
