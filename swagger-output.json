@@ -83,7 +83,7 @@
                   "example": "any"
                 },
                 "phone_number": {
-                  "example": "any"
+                  "example": "1234567890"
                 },
                 "street_address": {
                   "example": "any"
@@ -174,7 +174,7 @@
                   "example": "any"
                 },
                 "phone_number": {
-                  "example": "any"
+                  "example": "1234567890"
                 },
                 "street_address": {
                   "example": "any"
@@ -444,46 +444,46 @@
               "type": "object",
               "properties": {
                 "finger_size": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "metal_weight_grams": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "number_of_stones_1": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "number_of_stones_2": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "number_of_stones_3": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "cttw_stones_1": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "cttw_stones_2": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "cttw_stones_3": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "price_stones_1": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "price_stones_2": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "price_stones_3": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "labor_1": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "labor_2": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "labor_3": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "item_condition": {
                   "example": "any"
@@ -562,46 +562,46 @@
               "type": "object",
               "properties": {
                 "finger_size": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "metal_weight_grams": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "number_of_stones_1": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "number_of_stones_2": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "number_of_stones_3": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "cttw_stones_1": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "cttw_stones_2": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "cttw_stones_3": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "price_stones_1": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "price_stones_2": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "price_stones_3": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "labor_1": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "labor_2": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "labor_3": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "item_condition": {
                   "example": "any"
@@ -697,29 +697,26 @@
             "schema": {
               "type": "object",
               "properties": {
-                "entry_date": {
-                  "example": "any"
-                },
                 "metal_name": {
                   "example": "any"
                 },
                 "metal_karatage": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "metal_price": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "diamond_price_per_carat": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "gemstone_price_per_carat": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "labor_total": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "retail_modifier": {
-                  "example": "any"
+                  "example": "123"
                 }
               }
             }
@@ -788,29 +785,26 @@
             "schema": {
               "type": "object",
               "properties": {
-                "entry_date": {
-                  "example": "any"
-                },
                 "metal_name": {
                   "example": "any"
                 },
                 "metal_karatage": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "metal_price": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "diamond_price_per_carat": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "gemstone_price_per_carat": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "labor_total": {
-                  "example": "any"
+                  "example": "123"
                 },
                 "retail_modifier": {
-                  "example": "any"
+                  "example": "123"
                 }
               }
             }
