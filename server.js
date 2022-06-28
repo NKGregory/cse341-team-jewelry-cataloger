@@ -19,7 +19,6 @@ const port = process.env.PORT || 8080;
 
 const app = express();
 
-
 // const uri = process.env.MONGO_DB_URI;
 
 app
@@ -44,10 +43,7 @@ process.on('uncaughtException', (err, origin) => {
   console.log(process.stderr.fd, `Exception: ${err}\n` + `Origin: ${origin}`);
 });
 
-app.listen(
-  port,
-  console.log(`Server running on port ${process.env.PORT}`)
-);
+app.listen(port, console.log(`Server running on port ${port}`));
 
 // mongodb.initDb((err, mongodb) => {
 //   if (err) {
@@ -57,4 +53,3 @@ app.listen(
 //     console.log(`Connected to DB and listening on ${port}`);
 //   }
 // });
-

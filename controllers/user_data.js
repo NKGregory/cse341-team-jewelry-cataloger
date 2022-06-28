@@ -1,7 +1,10 @@
 // const mongodb = require('../db/connect');
 const ObjectId = require('mongodb').ObjectId;
-
 const UserData = require('../models/User_Data');
+
+const handleErrors = (err) => {
+  console.error(err);
+};
 
 const getAll = async (req, res, next) => {
   /*
@@ -10,13 +13,13 @@ const getAll = async (req, res, next) => {
   */
   try {
     const result = await UserData.find();
-      // .toArray((err, lists) => {
-      //   if (err) {
-      //     res.status(400).json({ message: err });
-      //   }
+    // .toArray((err, lists) => {
+    //   if (err) {
+    //     res.status(400).json({ message: err });
+    //   }
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(result);
-      // });
+    // });
   } catch (err) {
     console.error(err);
     res.status(500).json(err);
@@ -38,14 +41,14 @@ const getSingle = async (req, res, next) => {
       // .getDb()
       // .db(process.env.PARENT_FOLDER)
       // .collection(process.env.USER)
-      .find({ _id: userId })
-      // .toArray((err, lists) => {
-      //   if (err) {
-      //     res.status(400).json({ message: err });
-      //   }
-      res.setHeader('Content-Type', 'application/json');
-      res.status(200).json(result);
-      // });
+      .find({ _id: userId });
+    // .toArray((err, lists) => {
+    //   if (err) {
+    //     res.status(400).json({ message: err });
+    //   }
+    res.setHeader('Content-Type', 'application/json');
+    res.status(200).json(result);
+    // });
   } catch (err) {
     console.error(err);
     res.status(500).json(err);
@@ -60,21 +63,21 @@ const postNewUser = async (req, res) => {
   */
   try {
     const user = new UserData({
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        email_address: req.body.email_address,
-        phone_number: req.body.phone_number,
-        street_address: req.body.street_address,
-        city: req.body.city,
-        state: req.body.state,
-        zipcode: req.body.zipcode,   
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      email_address: req.body.email_address,
+      phone_number: req.body.phone_number,
+      street_address: req.body.street_address,
+      city: req.body.city,
+      state: req.body.state,
+      zipcode: req.body.zipcode,
     });
 
     const response = await user.save();
-      // .getDb()
-      // .db(process.env.PARENT_FOLDER)
-      // .collection(process.env.USER)
-      // .insertOne(newUser);
+    // .getDb()
+    // .db(process.env.PARENT_FOLDER)
+    // .collection(process.env.USER)
+    // .insertOne(newUser);
 
     res.status(201).json(response);
     // if (response.acknowledged) {
@@ -83,12 +86,11 @@ const postNewUser = async (req, res) => {
     //   res.status(500).json(response.error || 'An error has occured');
     // }
   } catch (err) {
-    console.error(err);
+    handleErrors(err);
     res.status(500).json(err);
     res.status(401);
   }
 };
-
 
 const putUpdateUser = async (req, res) => {
   /*
@@ -101,14 +103,14 @@ const putUpdateUser = async (req, res) => {
     }
     const userId = new ObjectId(req.params.id);
     const updatedUser = {
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        email_address: req.body.email_address,
-        phone_number: req.body.phone_number,
-        street_address: req.body.street_address,
-        city: req.body.city,
-        state: req.body.state,
-        zipcode: req.body.zipcode,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      email_address: req.body.email_address,
+      phone_number: req.body.phone_number,
+      street_address: req.body.street_address,
+      city: req.body.city,
+      state: req.body.state,
+      zipcode: req.body.zipcode,
     };
 
     const response = await UserData
@@ -120,16 +122,15 @@ const putUpdateUser = async (req, res) => {
     console.log(response);
     if (response.modifiedCount > 0) {
       res.status(204).send();
-    } else {
-      res
-        .status(500)
-        .json(
-          response.error || 'Some error occurred while updating the contact.'
-        );
+      // } else {
+      //   res
+      //     .status(500)
+      //     .json(
+      //       response.error || 'Some error occurred while updating the contact.'
+      //     );
     }
   } catch (err) {
-    console.error(err);
-    res.status(500).json(err);
+    res.status(500).json(handleErrors(err));
     res.status(401);
   }
 };

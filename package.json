@@ -27,6 +27,7 @@
     "mongoose": "^6.4.0",
     "mongosh": "^0.0.1",
     "swagger-jsdoc": "^6.2.1",
+    "validator": "^13.7.0",
     "validatorjs": "^3.22.1"
   },
   "devDependencies": {
