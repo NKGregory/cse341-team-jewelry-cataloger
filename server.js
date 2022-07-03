@@ -1,5 +1,5 @@
 const express = require('express');
-
+const path = require('path');
 const MongoClient = require('mongodb').MongoClient;
 const mongodb = require('./db/connect');
 
@@ -19,28 +19,32 @@ const port = process.env.PORT || 8080;
 
 const app = express();
 
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+app.use(express.static('public'));
 // const uri = process.env.MONGO_DB_URI;
 
 app
-  .use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
-  .use(bodyParser.json())
-  .use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader(
-      'Access-Control-Allow-Headers',
-      'Origin, E-Requested-With, Content-Type, Accept, Z-Key'
-    );
-    res.setHeader('Content-Type', 'application/json');
-    res.setHeader(
-      'Access-Control-Allow-Methods',
-      'GET, POST, PUT, DELETE, OPTIONS'
-    );
-    next();
-  })
-  .use('/', require('./routes'));
+	.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+	.use(bodyParser.json())
+	.use((req, res, next) => {
+		res.setHeader('Access-Control-Allow-Origin', '*');
+		res.setHeader(
+			'Access-Control-Allow-Headers',
+			'Origin, E-Requested-With, Content-Type, Accept, Z-Key'
+		);
+		// Need to comment out below to make ejs template work
+		// res.setHeader('Content-Type', 'application/json');
+		res.setHeader(
+			'Access-Control-Allow-Methods',
+			'GET, POST, PUT, DELETE, OPTIONS'
+		);
+		next();
+	})
+	.use('/', require('./routes'));
 
 process.on('uncaughtException', (err, origin) => {
-  console.log(process.stderr.fd, `Exception: ${err}\n` + `Origin: ${origin}`);
+	console.log(process.stderr.fd, `Exception: ${err}\n` + `Origin: ${origin}`);
 });
 
 app.listen(port, console.log(`Server running on port ${port}`));
