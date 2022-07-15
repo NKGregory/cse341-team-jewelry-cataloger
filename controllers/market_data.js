@@ -131,7 +131,7 @@ const putUpdateMarket = async (req, res) => {
 			res
 				.status(500)
 				.json(
-					response.error || 'Some error occurred while updating the contact.'
+					response.error || 'Some error occurred while updating the Market.'
 				);
 		}
 	} catch (err) {
